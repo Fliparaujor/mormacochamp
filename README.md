@@ -141,3 +141,7 @@ Com o modo automático ligado, a sequência é:
 - Web Push com o navegador fechado: hoje há som, título da aba piscando e notificação local enquanto a página está aberta (inclusive em segundo plano no Android).
 - Mercado Pago está implementado (QR dinâmico, webhook assinado, reembolso no cancelamento por quórum), mas **não foi testado contra a API real** por falta de credenciais. Use manual no primeiro evento.
 - WhatsApp automático (sem API viável no prazo): use "Copiar pareamentos".
+
+## 7. Diagnóstico
+
+Abra `https://SEU-DOMINIO/api/health?secret=CRON_SECRET`. A página lista, em português, o que está faltando ou errado: variáveis vazias ou com texto de exemplo, `DATABASE_URL` apontando para a conexão direta em vez do Transaction pooler, erro de senha, tabelas que faltam e se o torneio `noite-assombrada` existe. Ela nunca mostra o valor das variáveis.
