@@ -26,6 +26,7 @@ export function getDb(): Db {
       max: Number(process.env.DB_POOL_MAX ?? 3),
       ssl: isLocal ? undefined : { rejectUnauthorized: false },
       idleTimeoutMillis: 10_000,
+      connectionTimeoutMillis: 8_000,
     });
   g.__arenaPool = pool;
   const db: Db = {
