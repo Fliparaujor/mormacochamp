@@ -75,14 +75,14 @@ export function Standings({ rows, highlightId, limit }: { rows: StandingView[]; 
   if (!rows.length) return <p className="text-sm opacity-80">A classificação aparece depois da rodada 1.</p>;
   const shown = limit ? rows.slice(0, limit) : rows;
   return (
-    <div className="-mx-2 overflow-x-auto">
-      <table className="w-full min-w-[320px] text-left text-sm">
+    <div className="-mx-1.5 overflow-x-auto">
+      <table className="w-full text-left text-sm">
         <thead>
           <tr className="border-b-2 border-navy">
-            <th className="px-2 py-1">#</th>
-            <th className="px-2 py-1">Jogador</th>
-            <th className="px-2 py-1 text-right">Pts</th>
-            <th className="px-2 py-1 text-right">V-D-E</th>
+            <th className="px-1.5 py-1">#</th>
+            <th className="px-1.5 py-1">Jogador</th>
+            <th className="px-1.5 py-1 text-right">Pts</th>
+            <th className="px-1.5 py-1 text-right whitespace-nowrap">V-D-E</th>
             <th className="hidden px-2 py-1 text-right sm:table-cell">OWP</th>
             <th className="hidden px-2 py-1 text-right sm:table-cell">Op-OWP</th>
           </tr>
@@ -90,13 +90,13 @@ export function Standings({ rows, highlightId, limit }: { rows: StandingView[]; 
         <tbody className="tabular">
           {shown.map((r) => (
             <tr key={r.playerId} className={`border-b border-navy/20 ${r.playerId === highlightId ? "bg-yellow" : ""} ${r.dropped ? "opacity-50" : ""}`}>
-              <td className="px-2 py-1 font-title">{r.rank}</td>
-              <td className="px-2 py-1">
-                <span className="block max-w-[11rem] truncate sm:max-w-none">{r.name}</span>
+              <td className="px-1.5 py-1 font-title">{r.rank}</td>
+              <td className="px-1.5 py-1">
+                <span className="block max-w-[9.5rem] truncate sm:max-w-none">{r.name}</span>
                 {r.dropped ? <span className="text-xs">saiu</span> : null}
               </td>
-              <td className="px-2 py-1 text-right font-title">{r.points}</td>
-              <td className="px-2 py-1 text-right">
+              <td className="px-1.5 py-1 text-right font-title">{r.points}</td>
+              <td className="px-1.5 py-1 text-right whitespace-nowrap">
                 {r.wins + r.byes}-{r.losses}-{r.ties}
               </td>
               <td className="hidden px-2 py-1 text-right sm:table-cell">{formatPct(r.owp)}</td>

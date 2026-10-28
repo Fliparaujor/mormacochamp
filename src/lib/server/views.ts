@@ -196,7 +196,7 @@ export function roundView(state: TournamentState, round: RoundRow): RoundView {
 }
 
 export function standingsView(state: TournamentState): StandingView[] {
-  if (state.rounds.length === 0) return [];
+  if (!state.rounds.some((r) => r.status === "closed")) return [];
   const byId = new Map(state.players.map((p) => [p.id, p]));
   return swissStandings(state).map((s) => ({
     rank: s.rank,

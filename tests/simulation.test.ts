@@ -88,7 +88,7 @@ async function makeTournament(over: Partial<TournamentRow> = {}): Promise<Tourna
 async function addPlayers(t: TournamentRow, n: number, paid = true) {
   const out = [];
   for (let i = 0; i < n; i++) {
-    const p = await registerPlayer(db, { tournamentId: t.id, name: `Jogador ${i + 1}`, tcgliveName: `live${i + 1}`, whatsapp: "85999990000" });
+    const p = await registerPlayer(db, { tournamentId: t.id, name: `Jogador ${i + 1}`, tcgliveName: `live${i + 1}`, whatsapp: "85999990000", decklist: "4 Pikachu SVI 1" });
     if (paid) await confirmPayment(db, p.id, null, "admin");
     out.push(p);
   }
@@ -115,6 +115,10 @@ describe("fluxo real com reportes", () => {
     const unpaid = await registerPlayer(db, { tournamentId: t.id, name: "Sem Pix", tcgliveName: "sempix", whatsapp: "85" });
     await tickTournament(db, t.id, new Date("2026-10-31T22:30:00Z"));
     await expect(playerCheckin(db, unpaid.token, new Date("2026-10-31T22:31:00Z"))).rejects.toThrow(/pagamento/);
+    // sem lista não tem check-in
+    const semLista = await registerPlayer(db, { tournamentId: t.id, name: "Sem Lista", tcgliveName: "semlista", whatsapp: "85" });
+    await confirmPayment(db, semLista.id, null, "admin");
+    await expect(playerCheckin(db, semLista.token, new Date("2026-10-31T22:31:00Z"))).rejects.toThrow(/lista/);
     for (const p of ps) await playerCheckin(db, p.token, new Date("2026-10-31T22:31:00Z"));
     const start = new Date("2026-10-31T22:45:00Z");
     await tickTournament(db, t.id, start);

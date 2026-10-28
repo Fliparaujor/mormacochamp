@@ -103,10 +103,13 @@ export function ReportForm({ token, matchId, myReport }: { token: string; matchI
           Eu perdi
         </button>
       </div>
-      <label className="block">
+      <div>
         <span className="label">Print da tela final (obrigatório)</span>
-        <input type="file" accept="image/*" className="input text-sm" onChange={onFile} disabled={busy} />
-      </label>
+        <label className={`btn btn-neutral w-full ${busy ? "opacity-60" : ""}`}>
+          {blob ? "Trocar print" : "Escolher print"}
+          <input type="file" accept="image/*" className="sr-only" onChange={onFile} disabled={busy} />
+        </label>
+      </div>
       {preview ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={preview} alt="Prévia do print" className="max-h-56 rounded-xl border-2 border-navy" />

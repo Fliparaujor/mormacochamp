@@ -184,6 +184,7 @@ export async function playerCheckin(db: Db, token: string, now: Date) {
     if (p.payment_status !== "paid") throw new UserError("Seu pagamento ainda não foi confirmado.");
     if (p.dropped) throw new UserError("Sua inscrição está fora do torneio.");
     if (p.checked_in) return;
+    if (!p.decklist_text?.trim()) throw new UserError("Mande sua lista antes do check-in. Ela é obrigatória.");
     await tx.query("update players set checked_in = true, checked_in_at = $2, decklist_locked = true where id = $1", [p.id, now]);
     await logEvent(tx, t.id, "checkin", { player: p.name, player_id: p.id });
   });

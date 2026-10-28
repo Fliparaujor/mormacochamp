@@ -12,16 +12,18 @@ export function deadlinesOf(v: HubView): string[] {
   return out;
 }
 
-export function BigClock({ v }: { v: HubView }) {
+export function BigClock({ v, huge = false }: { v: HubView; huge?: boolean }) {
   const { t, round } = v;
+  const lbl = huge ? "font-title text-3xl sm:text-4xl" : "font-title text-lg";
+  const num = huge ? "font-title block text-8xl leading-none sm:text-[11rem]" : "font-title block text-6xl";
   if (round?.status === "live" && round.endsAt) {
     return (
       <div>
-        <p className="font-title text-lg">{round.label} · até {fmtTime(round.endsAt)}</p>
+        <p className={lbl}>{round.label} · até {fmtTime(round.endsAt)}</p>
         <Countdown
           to={round.endsAt}
           serverNow={v.serverNow}
-          className="font-title block text-6xl sm:text-7xl"
+          className={huge ? num : "font-title block text-6xl sm:text-7xl"}
           expired={<span className="font-title block text-3xl text-red sm:text-4xl">Tempo acabou</span>}
         />
         <After at={round.endsAt} serverNow={v.serverNow}>
@@ -33,24 +35,24 @@ export function BigClock({ v }: { v: HubView }) {
   if (t.nextRoundAt) {
     return (
       <div>
-        <p className="font-title text-lg">Próxima rodada começa em</p>
-        <Countdown to={t.nextRoundAt} serverNow={v.serverNow} className="font-title block text-6xl" expired={<span className="font-title text-3xl">saindo agora</span>} />
+        <p className={lbl}>Próxima rodada começa em</p>
+        <Countdown to={t.nextRoundAt} serverNow={v.serverNow} className={num} expired={<span className="font-title text-3xl">saindo agora</span>} />
       </div>
     );
   }
   if (t.status === "checkin" && t.checkinClosesAt) {
     return (
       <div>
-        <p className="font-title text-lg">Check-in fecha em</p>
-        <Countdown to={t.checkinClosesAt} serverNow={v.serverNow} className="font-title block text-6xl" expired={<span className="font-title text-3xl">fechando</span>} />
+        <p className={lbl}>Check-in fecha em</p>
+        <Countdown to={t.checkinClosesAt} serverNow={v.serverNow} className={num} expired={<span className="font-title text-3xl">fechando</span>} />
       </div>
     );
   }
   if ((t.status === "registration" || t.status === "draft") && t.checkinOpensAt) {
     return (
       <div>
-        <p className="font-title text-lg">Check-in abre em</p>
-        <Countdown to={t.checkinOpensAt} serverNow={v.serverNow} className="font-title block text-5xl" />
+        <p className={lbl}>Check-in abre em</p>
+        <Countdown to={t.checkinOpensAt} serverNow={v.serverNow} className={num} />
       </div>
     );
   }

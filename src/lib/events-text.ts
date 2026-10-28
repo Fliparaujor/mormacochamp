@@ -83,6 +83,10 @@ export function eventText(type: string, p: Record<string, any>, admin = false): 
       return `Simulação iniciada com ${p.players} jogadores`;
     case "refund_failed":
       return admin ? `Falha ao devolver Pix: ${p.error}` : null;
+    case "tournament_created":
+      return admin ? `Torneio criado: ${p.name}` : null;
+    case "player_edited":
+      return admin ? `Dados de ${p.player} editados pelo juiz` : null;
     case "tournament_updated":
       return admin ? "Configuração do torneio alterada" : null;
     case "auto_mode":

@@ -24,7 +24,7 @@ export default async function Display({ params }: { params: Promise<{ slug: stri
         <Logo className="text-4xl" />
       </div>
       <div className="card-butter mt-6 p-6 text-center">
-        <BigClock v={v} />
+        <BigClock v={v} huge />
         {v.placements[0] ? (
           <p className="font-title text-5xl">
             Campeão: <span className="highlight">{v.placements[0].name}</span>

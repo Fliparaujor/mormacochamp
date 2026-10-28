@@ -68,7 +68,8 @@ export default async function PlayerPage({
         {v.standing ? (
           <Section tone="card-dark">
             <p className="text-lg">
-              Você está em <span className="highlight font-title">{v.standing.rank}º</span> com {v.standing.points} pontos ({v.standing.wins + v.standing.byes}-{v.standing.losses}-{v.standing.ties})
+              {["topcut", "finished"].includes(v.hub.t.status) ? "No suíço você ficou em" : "Você está em"}{" "}
+              <span className="highlight font-title">{v.standing.rank}º</span> com {v.standing.points} pontos ({v.standing.wins + v.standing.byes}-{v.standing.losses}-{v.standing.ties})
             </p>
           </Section>
         ) : null}
@@ -210,7 +211,11 @@ function MainCard({ v, token }: { v: PlayerView; token: string }) {
             <SubmitButton className="btn btn-primary btn-lg w-full text-2xl" pendingText="Confirmando...">
               Fazer check-in
             </SubmitButton>
-            {!me.deck.ok ? <p className="text-sm font-bold text-red">Sua lista ainda não tem 60 cartas. Ajusta antes, ela trava no check-in.</p> : null}
+            {me.deck.total === 0 ? (
+              <p className="text-sm font-bold text-red">Mande sua lista aqui embaixo antes. Sem lista não tem check-in.</p>
+            ) : !me.deck.ok ? (
+              <p className="text-sm font-bold text-red">Sua lista ainda não tem 60 cartas. Ajusta antes, ela trava no check-in.</p>
+            ) : null}
           </ActionForm>
         )}
         {hub.t.checkinClosesAt ? (
