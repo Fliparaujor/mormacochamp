@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #272d67;
+  --color-navy-deep: #161a44;
+  --color-cream: #fcf6de;
+  --color-yellow: #f6d13a;
+  --color-butter: #f2d77e;
+  --color-red: #d94338;
+  --color-bubble: #7fcbe2;
+  --color-sky: #abdce8;
+  --font-sans: "Fredoka", ui-rounded, system-ui, sans-serif;
+  --radius-card: 24px;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: var(--color-navy);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3,
+.font-title {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Retícula de pontos no canto superior direito */
+.halftone {
+  position: relative;
+  isolation: isolate;
+}
+.halftone::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(380px, 70vw);
+  height: 300px;
+  background-image: radial-gradient(circle, rgba(252, 246, 222, 0.16) 2px, transparent 2.6px);
+  background-size: 16px 16px;
+  -webkit-mask-image: radial-gradient(ellipse at top right, #000 0%, transparent 70%);
+  mask-image: radial-gradient(ellipse at top right, #000 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+@layer components {
+  .card {
+    background: var(--color-cream);
+    color: var(--color-navy);
+    border: 3px solid var(--color-navy);
+    border-radius: var(--radius-card);
+    box-shadow: 6px 6px 0 0 var(--color-navy-deep);
+  }
+  .card-butter {
+    background: var(--color-butter);
+    color: var(--color-navy);
+    border: 3px solid var(--color-navy);
+    border-radius: var(--radius-card);
+    box-shadow: 6px 6px 0 0 var(--color-navy-deep);
+  }
+  .card-dark {
+    background: var(--color-navy-deep);
+    color: var(--color-cream);
+    border: 3px solid var(--color-cream);
+    border-radius: var(--radius-card);
+    box-shadow: 6px 6px 0 0 #0b0d26;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    border: 3px solid var(--color-navy);
+    border-radius: 999px;
+    padding: 0.7rem 1.25rem;
+    line-height: 1.1;
+    box-shadow: 4px 4px 0 0 var(--color-navy-deep);
+    transition: transform 80ms ease, box-shadow 80ms ease;
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+  }
+  .btn:active:not(:disabled) {
+    transform: translate(3px, 3px);
+    box-shadow: 1px 1px 0 0 var(--color-navy-deep);
+  }
+  .btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+  .btn-primary {
+    background: var(--color-yellow);
+    color: var(--color-navy);
+  }
+  .btn-danger {
+    background: var(--color-red);
+    color: var(--color-cream);
+  }
+  .btn-neutral {
+    background: var(--color-bubble);
+    color: var(--color-navy);
+  }
+  .btn-light {
+    background: var(--color-cream);
+    color: var(--color-navy);
+  }
+  .btn-sm {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.875rem;
+    border-width: 2px;
+    box-shadow: 3px 3px 0 0 var(--color-navy-deep);
+  }
+  .btn-lg {
+    padding: 1rem 1.5rem;
+    font-size: 1.25rem;
+  }
+  .highlight {
+    display: inline-block;
+    background: var(--color-yellow);
+    color: var(--color-navy);
+    padding: 0 0.35em;
+    border-radius: 10px;
+    transform: rotate(-2deg);
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border: 2px solid var(--color-navy);
+    border-radius: 999px;
+    padding: 0.1rem 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .input {
+    width: 100%;
+    background: #fff;
+    color: var(--color-navy);
+    border: 3px solid var(--color-navy);
+    border-radius: 16px;
+    padding: 0.65rem 0.9rem;
+    font-weight: 500;
+    outline: none;
+  }
+  .input:focus {
+    box-shadow: 0 0 0 3px var(--color-yellow);
+  }
+  .label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+  .link {
+    color: var(--color-bubble);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .card .link,
+  .card-butter .link {
+    color: var(--color-navy);
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
