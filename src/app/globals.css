@@ -46,7 +46,7 @@ h3,
   right: 0;
   width: min(380px, 70vw);
   height: 300px;
-  background-image: radial-gradient(circle, rgba(252, 246, 222, 0.16) 2px, transparent 2.6px);
+  background-image: radial-gradient(circle, rgba(95, 185, 217, 0.28) 2px, transparent 2.6px);
   background-size: 16px 16px;
   -webkit-mask-image: radial-gradient(ellipse at top right, #000 0%, transparent 70%);
   mask-image: radial-gradient(ellipse at top right, #000 0%, transparent 70%);

@@ -24,10 +24,10 @@ export function BigClock({ v, huge = false }: { v: HubView; huge?: boolean }) {
           to={round.endsAt}
           serverNow={v.serverNow}
           className={huge ? num : "font-title block text-6xl sm:text-7xl"}
-          expired={<span className="font-title block text-3xl text-red sm:text-4xl">Tempo acabou</span>}
+          expired={<span className={`font-title block text-red ${huge ? "text-5xl sm:text-9xl" : "text-3xl sm:text-4xl"}`}>Tempo acabou</span>}
         />
         <After at={round.endsAt} serverNow={v.serverNow}>
-          <p className="mt-1 text-sm">Vence quem tem mais cartas de prêmio. Empatou, chama o juiz.</p>
+          <p className={huge ? "mt-3 text-2xl" : "mt-1 text-sm"}>Vence quem tem mais cartas de prêmio. Empatou, chama o juiz.</p>
         </After>
       </div>
     );

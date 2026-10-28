@@ -188,7 +188,7 @@ export function RoundAlert({ storageKey, alertKey, message }: { storageKey: stri
     beep();
     if (typeof Notification !== "undefined" && Notification.permission === "granted") {
       navigator.serviceWorker?.getRegistration().then((reg) => {
-        if (reg) reg.showNotification("Arena Mormaço", { body: message, tag: alertKey, icon: "/icon.svg" });
+        if (reg) reg.showNotification("Arena Mormaço", { body: message, tag: alertKey, icon: "/icon.png" });
         else new Notification("Arena Mormaço", { body: message });
       });
     }

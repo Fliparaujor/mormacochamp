@@ -19,9 +19,9 @@ export default async function Display({ params }: { params: Promise<{ slug: stri
   return (
     <div className="halftone min-h-dvh p-4 sm:p-8">
       <LiveUpdater tournamentId={t.id} deadlines={deadlinesOf(v)} pollMs={8000} />
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex flex-wrap items-start justify-between gap-4">
         <TournamentTitle name={v.t.name} className="text-4xl sm:text-6xl" />
-        <Logo className="text-4xl" />
+        <Logo size="lg" />
       </div>
       <div className="card-butter mt-6 p-6 text-center">
         <BigClock v={v} huge />

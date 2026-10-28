@@ -134,7 +134,7 @@ Com o modo automático ligado, a sequência é:
 
 - **Jitsi embutido:** o meet.jit.si limita salas embutidas em iframe (aviso e corte após ~5 min sem login). Por isso o botão principal do jogador abre a sala em nova aba/app, que não tem esse limite; o "abrir aqui" e o painel do juiz usam iframe com link "Nova aba" ao lado. Se virar problema, troque para um servidor Jitsi próprio ou JaaS (8x8) em `src/components/jitsi.tsx`.
 - **Cron na Vercel Hobby** só roda 1x por dia, por isso o cron fica no Supabase (`supabase/cron.sql`).
-- **Logo:** sem `public/logo-mormaco.png`, aparece "MORMAÇO" escrito em Fredoka (TODO em `src/components/brand.tsx`). Basta colocar o arquivo e publicar de novo.
+- **Logo:** arquivo oficial em `public/logo-mormaco.svg`; o app usa PNGs gerados dele (`logo-mormaco.png`, `logo-mormaco-sm.png`), além do favicon e da prévia de link em `src/app/`. Para trocar, substitua os PNGs.
 
 ### Fora desta versão (PHASE 2)
 - Legalidade da lista (marcas H/I/J): hoje só confere 60 cartas e máximo de 4 cópias; o resto é com o juiz.

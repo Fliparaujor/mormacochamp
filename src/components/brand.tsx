@@ -1,12 +1,18 @@
 import Link from "next/link";
 
-export function Logo({ className = "" }: { className?: string }) {
-  if (process.env.NEXT_PUBLIC_HAS_LOGO) {
+/** Logo oficial (arquivo da marca, sem redesenho). `size="lg"` usa a versão em alta. */
+export function Logo({ className = "", size = "sm" }: { className?: string; size?: "sm" | "lg" }) {
+  const lg = size === "lg";
+  return (
     // eslint-disable-next-line @next/next/no-img-element
-    return <img src="/logo-mormaco.png" alt="Mormaço TCG" className={`h-9 w-auto ${className}`} />;
-  }
-  // TODO: colocar o arquivo oficial em public/logo-mormaco.png (não redesenhar o logo).
-  return <span className={`font-title text-2xl tracking-wide text-cream ${className}`}>MORMAÇO</span>;
+    <img
+      src={lg ? "/logo-mormaco.png" : "/logo-mormaco-sm.png"}
+      alt="Mormaço TCG"
+      width={lg ? 640 : 240}
+      height={lg ? 471 : 177}
+      className={`${lg ? "h-28 sm:h-36" : "h-14"} w-auto ${className}`}
+    />
+  );
 }
 
 export function Header({ right }: { right?: React.ReactNode }) {

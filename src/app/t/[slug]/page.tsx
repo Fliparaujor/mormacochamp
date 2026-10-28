@@ -34,7 +34,7 @@ export default async function Hub({ params }: { params: Promise<{ slug: string }
       {v.t.isSimulation ? <p className="chip mt-2 border-cream bg-red text-cream">Simulação · não é um torneio real</p> : null}
 
       <div className="mt-4 grid gap-5 lg:grid-cols-[1.4fr_1fr]">
-        <div className="space-y-5">
+        <div className="min-w-0 space-y-5">
           <div>
             <StatusBadge status={v.t.status} />
             <TournamentTitle name={v.t.name} className="mt-3 text-4xl sm:text-5xl" />
@@ -97,7 +97,7 @@ export default async function Hub({ params }: { params: Promise<{ slug: string }
           ) : null}
         </div>
 
-        <div className="space-y-5">
+        <div className="min-w-0 space-y-5">
           <Section title="Prêmio" tone="card-butter">
             <PrizeBox prize={v.prize} />
           </Section>
