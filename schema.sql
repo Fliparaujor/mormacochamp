@@ -2,7 +2,6 @@
 -- Rode uma vez no SQL Editor do Supabase (ou `npm run db:setup` com DATABASE_URL).
 -- Idempotente: pode rodar de novo sem perder dados.
 
-create extension if not exists pgcrypto;
 
 create table if not exists tournaments (
   id uuid primary key default gen_random_uuid(),
